@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ipasa mo ako ma'am/sir</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #fff0f5;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    #yesButton, #runButton {
+      padding: 15px 30px;
+      font-size: 20px;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    #yesButton {
+      background: #4caf50;
+      position: relative;
+      z-index: 2;
+    }
+
+    #runButton {
+      background: #e91e63;
+      position: absolute; 
+      top: 50%; 
+      left: 60%;
+      transform: translate(-50%, -50%);
+      transition: all 0.3s ease;
+      z-index: 3;
+    }
+
+    .button-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      position: relative;
+      width: 100%;
+    }
+
+    #message {
+      margin-top: 30px;
+      font-size: 22px;
+      color: #d81b60;
+      font-weight: bold;
+    }
+
+    #gifDisplay {
+      margin-top: 10px;
+      width: 220px;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>ipapasa nyo ba ako ma'am/sir?🥺</h2>
+
+  <div class="button-wrapper">
+    <button id="yesButton">Yes </button>
+    <button id="runButton">No </button>
+  </div>
+
+  <p id="message"></p>
+  <img id="gifDisplay" src="" alt="Reaction GIF">
+
+  <script>
+    const runButton = document.getElementById("runButton");
+    const yesButton = document.getElementById("yesButton");
+    const message = document.getElementById("message");
+    const gifDisplay = document.getElementById("gifDisplay");
+
+    const funnyMessages = [
+      "Payag kana plss",
+      "Say YES, para masaya💕",
+      "Ako na to oh 😍",
+      "Sige na oh pls lang ❤️",
+      "Payag kana,payag na ako 😇",
+      "Sige na naman oh 💖",
+      "Huwag ka na mahiya 😍",
+      "Yes ka na agad! 💕",
+      " ihh😭",
+     
+    ];
+
+    const noGifs = [
+      "https://i.ibb.co/9kyCtjJs/bubu-bubu-dudu.gif",
+      "https://i.ibb.co/HDTS3wmv/bubu-crying-bubu-no-no.gif" ,
+       "https://i.ibb.co/Zp683239/ba05848aa94062e65b730304a4c20cfb.gif" 
+    ];
+
+    const yesGif = "https://i.ibb.co/hR8FVRRF/images-1.png";
+
+    function moveRunButton() {
+      const buttonWidth = runButton.offsetWidth;
+      const buttonHeight = runButton.offsetHeight;
+
+      const maxX = window.innerWidth - buttonWidth - 20;
+      const maxY = window.innerHeight - buttonHeight - 20;
+
+      const x = Math.floor(Math.random() * maxX);
+      const y = Math.floor(Math.random() * maxY);
+
+      runButton.style.left = x + "px";
+      runButton.style.top = y + "px";
+
+     
+      message.textContent = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
+
+      // Show random "no" GIF
+      gifDisplay.src = noGifs[Math.floor(Math.random() * noGifs.length)];
+      gifDisplay.style.display = "block";
+    }
+
+    runButton.addEventListener("mouseover", moveRunButton);
+    runButton.addEventListener("click", moveRunButton);
+
+    yesButton.addEventListener("click", () => {
+      message.textContent = "Yay! ❤️ You said YES! 😍";
+      gifDisplay.src = yesGif;
+      gifDisplay.style.display = "block";
+    });
+  </script>
+</body>
+</html>
